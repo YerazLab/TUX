@@ -1,0 +1,6 @@
+Zabbix Server;zabbix-server
+Zabbix Agent;zabbix-agent
+PHP FPM;php8.1-fpm
+Nginx;nginx
+MariaDB;mariadb
+UFW;ufw
