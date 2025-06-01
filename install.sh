@@ -114,8 +114,7 @@ check_isroot() {
         printf "\n\n"
         print_box "${COLOR_OK_FG}In order to run in as root use :${COLOR_RESET}" \
                   "" \
-                  "${COLOR_OK_FG}sudo -i${COLOR_RESET}" \
-                  "${COLOR_OK_FG}source install.sh${COLOR_RESET}" \
+                  "${COLOR_OK_FG}sudo bash -i ./install.sh${COLOR_RESET}" \
                   80
         
         return 1

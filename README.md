@@ -3,8 +3,8 @@ Awesome MOTD for Ubuntu with system information and more.
 
 > **Note:** Successfully tested on **Ubuntu 18**, **20**, **22** and **24+**.
 
+<img src="https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/ressources/screenshot.png" width="400">
 
-![alt text](/ressources/screenshot.png)
 
 # Installation
 
@@ -17,9 +17,8 @@ All features will be installed (including the silent flag).
 ## Manual
 You will be prompted to select the features to install.
 
-    sudo -i
-    git clone https://github.com/YerazLab/TUX.git /opt/TUX/packages
-    cd /opt/TUX/packages
+    curl -O https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/install.sh
+    chmod +x ./install.sh
     sudo bash -i ./install.sh
 
 > **Warning:** You need to start the installer as an interactive user (**bash -I**). If you don't, no dialogs will be shown.
