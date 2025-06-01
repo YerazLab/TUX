@@ -124,24 +124,6 @@ check_isroot() {
     fi
 }
 
-# Verifie si un script est exécute ou sourcé
-check_issourced() {
-    is_sourced
-    if [ $? -eq 0 ]; then
-        print_msg "ERROR" "SCRIPT" "The script is being executed not sourced"
-        printf "\n\n"
-        print_box "${COLOR_OK_FG}In order to run this script as sourced, use :${COLOR_RESET}" \
-                  "" \
-                  "${COLOR_OK_FG}source install.sh${COLOR_RESET}" \
-                  80
-        
-        return 1
-    else 
-        print_msg "OK" "SCRIPT" "Script is correctly sourced"
-        return 0
-    fi
-}
-
 # Vérifie si une comande existe
 has_command() {
   command -v "$@" >/dev/null 2>&1

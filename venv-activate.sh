@@ -9,7 +9,6 @@ bash_installation() {
     start_tux
 
     check_isroot    || { quit_installation; return; }
-    check_issourced || { quit_installation; return; }
     print_msg "OK" "VENV" "Activating virtual environment"
     source $venv_dir/bin/activate
     printf "\n\n"
