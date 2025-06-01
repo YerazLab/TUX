@@ -2,7 +2,7 @@
 
 **Installation**
 sudo -i
-git clone https://yeraz-repos@dev.azure.com/yeraz-repos/Tux/_git/Tux /opt/TUX/packages
+git clone https://github.com/YerazLab/TUX.git /opt/TUX/packages
 cd /opt/TUX/packages
 source install.sh
 
