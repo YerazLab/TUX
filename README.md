@@ -1,37 +1,71 @@
 # TUX
+Awesome MOTD for Ubuntu with system information and more.
+
+> **Note:** Successfully tested on **Ubuntu 18**, **20**, **22** and **24+**.
+
 
 ![alt text](/ressources/screenshot.jpg)
 
-**Installation**
-<pre>
-sudo -i
-git clone https://github.com/YerazLab/TUX.git /opt/TUX/packages
-cd /opt/TUX/packages
-source install.sh
-</pre>
+# Installation
 
-**Parameters**
+## Automatic
+All features will be installed (including the silent flag).
 
-| Option      | Description                                      |
-|-------------|--------------------------------------------------|
-| `--silent`  | Disable all questions and enable all features    |
-| `--help`    | Show usage and exit                              |
-
-**Update**
-<pre>
-cd /opt/TUX/packages
-git pull
-</pre>
-
-**Activate VENV**
-<pre>
-cd /opt/TUX/packages
-source venv-activate.sh
-</pre>
+    curl https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/install.sh | sudo bash -s -
 
 
-**Debug de tux_motd**
-<pre>
-tux_motd 2> /tmp/tuxmotd.log
-</pre>
+## Manual
+You will be prompted to select the features to install.
 
+    sudo -i
+    git clone https://github.com/YerazLab/TUX.git /opt/TUX/packages
+    cd /opt/TUX/packages
+    sudo bash -i ./install.sh
+
+> **Warning:** You need to start the installer as an interactive user (**bash -I**). If you don't, no dialogs will be shown.
+
+## Parameters
+
+| Option | Description |
+|-|-|
+| `--silent` | Disable all questions and enable all features |
+| `--help` | Show the helper and exit |
+
+  
+# Update
+
+    cd /opt/TUX/packages
+    git pull
+
+
+# Extra
+
+## Custom services detection
+
+Edit **/etc/TUX/motd.services.txt** and add one service per line, with the format: **name;service**. For example:
+
+    Nginx Web Server;nginx
+    My firewall;ufw
+
+> **Note:** Do not add **.service** in the service name.
+
+## Activate VENV
+
+For testing or debugging:
+
+    cd /opt/TUX/packages
+    source venv-activate.sh
+
+## Deactivate VENV
+
+For testing or debugging:
+
+    cd /opt/TUX/packages
+    deactivate
+
+
+## MOTD debug
+
+If the MOTD is not showing at login, edit **/etc/update-motd.d/99-tux-motd** and modify the relevant line as follows. Then logout and login again. Double-check the log at **/tmp/tuxmotd.log**
+
+    tux_motd 2> /tmp/tuxmotd.log
