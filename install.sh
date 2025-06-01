@@ -406,7 +406,6 @@ Options:
 
 Examples:
   $script --silent
-  $script --force
 
 EOF
 }
