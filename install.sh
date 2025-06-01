@@ -165,6 +165,10 @@ is_interactive_shell() {
 
 # Affiche un dialogue oui/non suivant si l'on est en mode silencieux ou non
 print_dialog() {
+    echo "DEBUG \$- = $-"
+    echo "DEBUG \$1 = $1"
+    is_interactive_shell && echo "is_interactive_shell = TRUE" || echo "is_interactive_shell = FALSE"
+
     if [[ "$1" == "no" ]] && is_interactive_shell; then
         dialog "Yes" "No" "${2}"
 
