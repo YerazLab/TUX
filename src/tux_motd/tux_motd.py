@@ -168,7 +168,8 @@ def is_service(service, state):
             bool: True si le service est dans l'état demandé, sinon False.
     """
 
-    result = subprocess.run(["systemctl", state, "--quiet", service], capture_output=True)
+    result = subprocess.run(["systemctl", state, "--quiet", service], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
     return result.returncode ==0
 
 def print_network():

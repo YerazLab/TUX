@@ -4,7 +4,7 @@ Awesome MOTD for Ubuntu with system information and more.
 > **Note:** Successfully tested on **Ubuntu 18**, **20**, **22** and **24+**.
 
 
-![alt text](/ressources/screenshot.jpg)
+![alt text](/ressources/screenshot.png)
 
 # Installation
 
