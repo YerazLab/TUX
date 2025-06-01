@@ -299,11 +299,9 @@ end_message() {
 git_clone_or_update() {
     if has_command git; then
         if [ -d "$REPO_DIR" ] && [ -d "$REPO_DIR/.git" ]; then
-            echo "Il y a un dépôt git dans $REPO_DIR"
-            #git_update
+            git_update
         else
-            echo "Il n'y a pas de dépôt git dans $REPO_DIR"
-            #git_clone
+            git_clone
         fi
     else
         set_error "GIT" "Git is not installed, please install git to continue"
@@ -443,16 +441,14 @@ main() {
     print_is_silentmode
 
     check_isroot        || { quit_installation; return; }
-   # check_issourced     || { quit_installation; return; }
-
     git_clone_or_update || { quit_installation; return; }
 
-#    print_header "Environnement installation"
-#    install_venv        || { quit_installation; return; }
-#    create_venv         || { quit_installation; return; }
-#    activate_venv       || { quit_installation; return; }
-#    upgrading_pip       || { quit_installation; return; }
-#    install_modules
+    print_header "Environnement installation"
+    install_venv        || { quit_installation; return; }
+    create_venv         || { quit_installation; return; }
+    activate_venv       || { quit_installation; return; }
+    upgrading_pip       || { quit_installation; return; }
+    install_modules
 
     end_message
 
