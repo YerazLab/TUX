@@ -19,6 +19,7 @@ import re
 import netifaces
 import platform
 import os
+import shutil
 
 from colorama import Fore, Style
 
@@ -158,7 +159,14 @@ def print_services():
         print(f"   {Style.BRIGHT}{color_highlight}󰒔  {name:30}{reset}{run_color}{run_status:9}  {boot_color}{boot_status}{reset}\r")
 
 def is_service(service, state):
-    """ Définit l'état d'un service """
+    """ 
+        Vérifie l'état d'un service
+        Args:
+            service (str): Le nom du service.
+            state (str): L'état à vérifier (is-active, is-enabled).
+        Returns:
+            bool: True si le service est dans l'état demandé, sinon False.
+    """
 
     result = subprocess.run(["systemctl", state, "--quiet", service], capture_output=True)
     return result.returncode ==0
@@ -212,44 +220,45 @@ def print_gateway():
 def print_dns():
     """ Affiche les DNS """
 
-    dns = set()
+    if is_root():
+        dns = set()
 
-    for path in glob.glob('/etc/netplan/*.yaml'):
+        for path in glob.glob('/etc/netplan/*.yaml'):
+            try:
+                with open(path, 'r') as file:
+                    data = yaml.safe_load(file) or {}
+
+                for section in ['ethernets', 'vlans', 'bridges', 'wifis']:
+                    interfaces = data.get('network', {}).get(section, {})
+                    for config in interfaces.values():
+                        nameservers = config.get('nameservers', {})
+                        addresses = nameservers.get('addresses', [])
+                        dns.update(addresses)
+
+            except FileNotFoundError:
+                continue
+
         try:
-            with open(path, 'r') as file:
-                data = yaml.safe_load(file) or {}
-
-            for section in ['ethernets', 'vlans', 'bridges', 'wifis']:
-                interfaces = data.get('network', {}).get(section, {})
-                for config in interfaces.values():
-                    nameservers = config.get('nameservers', {})
-                    addresses = nameservers.get('addresses', [])
-                    dns.update(addresses)
-
+            with open("/etc/resolv.conf", 'r') as file:
+                for line in file:
+                    match = re.match(r"nameserver\s+([\d\.]+)", line)
+                    if match:
+                        dns.add(match.group(1))
         except FileNotFoundError:
-            continue
+            pass
 
-    try:
-        with open("/etc/resolv.conf", 'r') as file:
-            for line in file:
-                match = re.match(r"nameserver\s+([\d\.]+)", line)
-                if match:
-                    dns.add(match.group(1))
-    except FileNotFoundError:
-        pass
-
-    if dns:
-        for item in sorted(dns):
-            print_label("󰖟", "DNS", item, 3)
-    else:
-        print_label("󰖟", "DNS", "None", 3)
+        if dns:
+            for item in sorted(dns):
+                print_label("󰖟", "DNS", item, 3)
+        else:
+            print_label("󰖟", "DNS", "None", 3)
 
 def print_firewall():
     """ Affiche les règles du parefeu """
 
     system = platform.system()
 
-    if (system == "Linux" and is_root()):
+    if (has_command("ufw") and is_root()):
         result = subprocess.run(['ufw', 'status'], stdout=subprocess.PIPE, universal_newlines=True)
 
         if ("---" in result.stdout):
@@ -437,6 +446,16 @@ def print_label(icon, label, value, indent=0):
     """
 
     print(f"{' ' * indent}{Style.BRIGHT}{color_highlight}{icon}  {label:16}{reset}{value}")
+
+def has_command(cmd):
+    """ 
+        Vérifie si une commande est disponible
+        Args:
+            cmd (str): Le nom de la commande.
+        Returns:
+            bool: True si la commande est disponible, sinon False.
+    """
+    return shutil.which(cmd) is not None
 
 def is_root():
     """ 

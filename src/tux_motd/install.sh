@@ -1,8 +1,7 @@
 #!/bin/bash
 
-set -e
-
 MODULE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MOTD_DIR="/etc/update-motd.d"
 
 # Installation des packages python
 install_requirements() {
@@ -33,15 +32,13 @@ init_configuration() {
 
         > "$output_file"
 
-        while IFS=";" read -r name svc; do
+        while IFS=";" read -r name svc || [[ -n $name ]]; do
             [ -z "$svc" ] && continue
 
-            if systemctl list-unit-files --type=service | grep -q "^${svc}\.service"; then
+            if systemctl status ${svc}.service &>/dev/null; then
                 echo "${name};${svc}" >> "$output_file"
             fi
         done < "$input_file"
-    else 
-        print_msg "OK" "MOTD" "No systemctl command"
     fi
 }
 
@@ -67,23 +64,38 @@ clean_module() {
     fi
 }
 
+# Création d'un lien symbolique vers /usr/local/bin
 link_module() {
-    print_msg "OK" "MOTD" "Linking module to /usr/local/bin"
-    ln -sf $venv_dir/bin/tux_motd /usr/local/bin/tux_motd
+    print_dialog $SILENT "Create a symbolic link to tux_motd in /usr/local/bin ?"
+    if [ $REPLY -eq 1 ]; then
+        print_msg "OK" "MOTD" "Linking module to /usr/local/bin"
+        ln -sf $VENV_DIR/bin/tux_motd /usr/local/bin/tux_motd
+    else
+        print_msg "INFO" "MOTD" "Skipping symbolic link creation"
+    fi
 }
 
-init_motd() {
-    local motd_dir="/etc/update-motd.d"
+disabled_motd() {
+    if [ -d "$MOTD_DIR" ]; then
+        print_dialog $SILENT "Disable existing MOTD (like landscape)?"
 
-    if [ ! -d "$motd_dir" ]; then
-        mkdir -p "$motd_dir"
-    else 
-        print_msg "OK" "MOTD" "Disabled all MOTD dynamic configuration"
-        chmod -x $motd_dir/*
+        if [ $REPLY -eq 1 ]; then
+            print_msg "OK" "MOTD" "Disabled all existing MOTD (/etc/update-motd.d/*)"
+            chmod -x $MOTD_DIR/*
+        else
+            print_msg "INFO" "MOTD" "Skipping disabling existing MOTD"
+        fi
+    fi
+} 
+
+# Configure le MOTD
+init_motd() {
+    if [ ! -d "$MOTD_DIR" ]; then
+        mkdir -p "$MOTD_DIR"
     fi
 
     print_msg "OK" "MOTD" "Initializing tux_motd configuration"
-    tee $motd_dir/99-tux-motd > /dev/null <<EOF
+    tee $MOTD_DIR/99-tux-motd > /dev/null <<EOF
 #!/bin/bash
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
@@ -91,15 +103,46 @@ tux_motd
 EOF
 
     print_msg "OK" "MOTD" "Set execute permission to tux_motd"
-    sudo chmod +x $motd_dir/99-tux-motd
+    sudo chmod +x $MOTD_DIR/99-tux-motd
 }
 
 clean_legacy() {
     print_msg "OK" "MOTD" "Cleaning legacy motd"
 }
 
+# Désactive l'affichage du dernier login
 disabled_printlastlog() {
-    print_msg "OK" "MOTD" "Disabled SSHD print last log"
+    print_dialog $SILENT "Disable PrintLastLog in SSH config (requires script to restart SSH)?"
+    if [ $REPLY -eq 1 ]; then
+
+        local ssh_config_file="/etc/ssh/sshd_config"
+
+        if [ -f "$ssh_config_file" ]; then
+            local ssh_backup_file="$ssh_config_file.bak.$(date +%s)"
+
+            cp "$ssh_config_file" "$ssh_backup_file"
+
+            if grep -qE "^\s*#?\s*PrintLastLog\s+" "$ssh_config_file"; then
+                sed -i 's/^\s*#\?\s*PrintLastLog\s\+.*/PrintLastLog no/' "$ssh_config_file"
+            else
+                echo "PrintLastLog no" >> "$ssh_backup_file"
+            fi
+
+            systemctl restart ssh
+
+            if systemctl is-active --quiet ssh; then
+                rm "$ssh_backup_file"
+                set_success "MOTD" "PrintLastLog disabled successfully"
+            else
+                cp "$ssh_backup_file" "$ssh_backup_file"
+                rm "$ssh_backup_file"
+                systemctl restart ssh
+                set_error "MOTD" "Failed to disabled PringLastLog revert to old configuration"
+            fi
+        fi
+    else
+        print_msg "INFO" "MOTD" "Skipping disabling PringLastLog"
+    fi
 }
 
 main() {
@@ -112,12 +155,13 @@ main() {
     build_module || { quit_installation; return; }
     clean_module || { quit_installation; return; }
     link_module
+    disabled_motd
     init_motd
     clean_legacy
-
     init_configuration
+    disabled_printlastlog || { quit_installation; return; }
 
     cd ..
 }
 
-main
+main "$@"

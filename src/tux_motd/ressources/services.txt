@@ -4,3 +4,6 @@ PHP FPM;php8.1-fpm
 Nginx;nginx
 MariaDB;mariadb
 UFW;ufw
+SentinelOne;sentinelone
+PostgreSQL;postgresql
+OpenProd;openprod
