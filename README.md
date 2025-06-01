@@ -9,7 +9,7 @@ Awesome MOTD for Ubuntu with system information and more.
 # Installation
 
 ## Automatic
-All features will be installed (including the silent flag).
+All features will be installed (like the silent flag).
 
     curl https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/install.sh | sudo bash -s -
 
