@@ -167,9 +167,14 @@ is_interactive_shell() {
 print_dialog() {
     if [[ "$1" == "no" ]] && is_interactive_shell; then
         dialog "Yes" "No" "${2}"
-        return $REPLY
+
+        if [ "$REPLY" = "1" ]; then
+            return 1
+        else
+            return 0
+        fi
     else
-        return 0
+        return 1
     fi
 }
 

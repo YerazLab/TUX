@@ -66,8 +66,7 @@ clean_module() {
 
 # Création d'un lien symbolique vers /usr/local/bin
 link_module() {
-    print_dialog $SILENT "Create a symbolic link to tux_motd in /usr/local/bin ?"
-    if [ $REPLY -eq 1 ]; then
+    if print_dialog $SILENT "Create a symbolic link to tux_motd in /usr/local/bin ?"; then
         print_msg "OK" "MOTD" "Linking module to /usr/local/bin"
         ln -sf $VENV_DIR/bin/tux_motd /usr/local/bin/tux_motd
     else
@@ -77,9 +76,7 @@ link_module() {
 
 disabled_motd() {
     if [ -d "$MOTD_DIR" ]; then
-        print_dialog $SILENT "Disable existing MOTD (like landscape)?"
-
-        if [ $REPLY -eq 1 ]; then
+        if print_dialog $SILENT "Disable existing MOTD (like landscape)?"; then
             print_msg "OK" "MOTD" "Disabled all existing MOTD (/etc/update-motd.d/*)"
             chmod -x $MOTD_DIR/*
         else
@@ -112,8 +109,7 @@ clean_legacy() {
 
 # Désactive l'affichage du dernier login
 disabled_printlastlog() {
-    print_dialog $SILENT "Disable PrintLastLog in SSH config (requires script to restart SSH)?"
-    if [ $REPLY -eq 1 ]; then
+    if print_dialog $SILENT "Disable PrintLastLog in SSH config (requires script to restart SSH)?"; then
 
         local ssh_config_file="/etc/ssh/sshd_config"
 
