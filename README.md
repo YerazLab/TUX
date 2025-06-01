@@ -46,10 +46,3 @@ source venv-activate.sh
 
 **Debug de Motd**
 tux_motd 2> /tmp/tuxmotd.log
-
-
-PAT avec tous les droits
-8dZ7upyrIGBFDVtc470Rqfy1CxPtYskiUgiLxrAvkn2O8Ny9iW2xJQQJ99BEACAAAAAHReolAAASAZDO3vxp
-
-PAT en lecture seule
-G02TB0VtsuOJbsZHzquCI0yo7mjSvAG9KgR9pa9eQo6Cr0SZUDhsJQQJ99BEACAAAAAHReolAAASAZDO4PT3
