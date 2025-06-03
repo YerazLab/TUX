@@ -1,7 +1,7 @@
 # TUX
 Awesome MOTD for Ubuntu with system information and more.
 
-> **Note:** Successfully tested on **Ubuntu 18**, **20**, **22** and **24+**.
+> **Note:** Successfully tested on **Ubuntu 18** to **25+**.
 
 <img src="https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/ressources/screenshot.png" width="400">
 
