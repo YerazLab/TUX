@@ -6,6 +6,10 @@ Awesome MOTD for Ubuntu with system information and more.
 <img src="https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/ressources/screenshot.png" width="400">
 
 
+# Prerequisites
+
+TUX uses glyphs (icons) to display some informations. To view these elements properly in your SSH terminal, you need to install a Nerd Font (such as Fira Code, DejaVuSans, etc.) on your local machine. Nerd Fonts are standard fonts that have been patched to include over 10,000 icons from Font Awesome, Material Design, and more.
+
 # Installation
 
 ## Automatic
@@ -33,7 +37,7 @@ You will be prompted to select the features to install.
   
 # Update
 
-    cd /opt/TUX/packages
+    cd /opt/TUX/repo
     git pull
 
 
@@ -52,16 +56,8 @@ Edit **/etc/TUX/motd.services.txt** and add one service per line, with the forma
 
 For testing or debugging:
 
-    cd /opt/TUX/packages
+    cd /opt/TUX/repo/scripts
     source venv-activate.sh
-
-## Deactivate VENV
-
-For testing or debugging:
-
-    cd /opt/TUX/packages
-    deactivate
-
 
 ## MOTD debug
 
