@@ -20,7 +20,7 @@ change_ps1() {
     done
 
     for file in "${files[@]}"; do
-        print_msg "OK" "MOTD" "Modification of the PS1 prompt on $file"
+        print_msg "OK" "PS1" "Modification of the PS1 prompt on $file"
         echo -e "\n$LINE" >> "$file"
     done
 }
@@ -31,10 +31,10 @@ init_ps1() {
 
         if [ "$SILENT" = "yes" ]; then printf "\n"; fi
 
-        print_msg "OK" "MOTD" "Modifying the PS1 prompt"
+        print_msg "OK" "PS1" "Modifying the PS1 prompt"
         change_ps1
     else
-        print_msg "INFO" "MOTD" "Skipping the PS1 prompt modification"
+        print_msg "INFO" "PS1" "Skipping the PS1 prompt modification"
     fi
 }
 
