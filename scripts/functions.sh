@@ -21,6 +21,11 @@ LABEL_WIDTH="10"
 
 #= COMMON FEATURES =================================================================================================
 
+# Affiche un en-tête
+print_header() {
+    printf "\n${COLOR_HIGHLIGHT_FG}${1}${COLOR_RESET}\n"
+}
+
 # Affiche un messsage
 print_msg() {
     case "$1" in
