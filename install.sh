@@ -83,7 +83,7 @@ print_box() {
 
 # Affiche un en-tête
 print_header() {
-    printf "\n${COLOR_HIGHLIGHT_FG}${1}${COLOR_RESET}\n\n"
+    printf "\n${COLOR_HIGHLIGHT_FG}${1}${COLOR_RESET}\n"
 }
 
 # Gère l'état de retour succès
@@ -263,7 +263,7 @@ abort_app() {
 # Affiche un message d'erreur et quitte l'installation
 quit_installation() {
     printf "\n\n"
-    print_msg "ERROR" "Installation error"
+    print_msg "INFO" "Quit installation"
     printf "\n\n"
 
     abort_app
@@ -433,7 +433,7 @@ main() {
     check_isroot        || { quit_installation; return; }
     git_clone_or_update || { quit_installation; return; }
 
-    print_header "Environnement installation"
+    print_header "Environnement installation\n"
     install_venv        || { quit_installation; return; }
     create_venv         || { quit_installation; return; }
     activate_venv       || { quit_installation; return; }

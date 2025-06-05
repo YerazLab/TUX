@@ -144,7 +144,7 @@ disabled_printlastlog() {
 main() {
     cd "$MODULE_DIR"
 
-    print_header "Module Motd installation"
+    print_header "Module Motd installation\n"
 
     install_requirements || { quit_installation; return; }
     install_font || { quit_installation; return; }

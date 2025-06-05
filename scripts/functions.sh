@@ -2,7 +2,6 @@
 
 #trap "quit_installation; return;" INT TERM
 
-
 #= SETTINGS ========================================================================================================
 
 VENV_DIR="/opt/TUX/venv"
