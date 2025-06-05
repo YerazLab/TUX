@@ -115,8 +115,11 @@ profile_modification() {
     cp "$PROFILE" "$BACKUP"
     print_msg "OK" "LEG" "Backup of $PROFILE on $BACKUP"
 
-    sed -i '/^# Lancer le script$/,/^fi$/d' "$PROFILE"
-    print_msg "OK" "LEG" "Remove previous script calling"
+    sed -i '/^Lancer le script/,/^fi$/d' "$PROFILE"
+    print_msg "OK" "LEG" "Remove previous script calling (block 1)"
+
+    sed -i '/#custom BP/,/%F %T : "/d' "$PROFILE"
+    print_msg "OK" "LEG" "Remove previous script calling (block 2)"
 }
 
 remove_script() {
@@ -127,7 +130,7 @@ remove_script() {
 
     while IFS= read -r -d '' file; do
         files+=("$file")
-    done < <(find /home -type f -name 'bp-test*' -print0)
+    done < <(find /home -maxdepth 2 -mindepth 1 -type f -name 'bp-test*' -print0)
 
     if [ ${#files[@]} -eq 0 ]; then
         print_msg "INFO" "LEGACY" "No files found"
