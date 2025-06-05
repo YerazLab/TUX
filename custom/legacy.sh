@@ -115,7 +115,7 @@ profile_modification() {
     cp "$PROFILE" "$BACKUP"
     print_msg "OK" "LEG" "Backup of $PROFILE on $BACKUP"
 
-    sed -i '/^Lancer le script/,/^fi$/d' "$PROFILE"
+    sed -i '/#Lancer le script/,/^fi$/d' "$PROFILE"
     print_msg "OK" "LEG" "Remove previous script calling (block 1)"
 
     sed -i '/#custom BP/,/%F %T : "/d' "$PROFILE"
