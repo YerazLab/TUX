@@ -103,10 +103,6 @@ EOF
     sudo chmod +x $MOTD_DIR/99-tux-motd
 }
 
-clean_legacy() {
-    print_msg "OK" "MOTD" "Cleaning legacy motd"
-}
-
 # Désactive l'affichage du dernier login
 disabled_printlastlog() {
     if print_dialog $SILENT "Disable PrintLastLog in SSH config (requires script to restart SSH)?"; then
@@ -153,7 +149,6 @@ main() {
     link_module
     disabled_motd
     init_motd
-    clean_legacy
     init_configuration
     disabled_printlastlog || { quit_installation; return; }
 
