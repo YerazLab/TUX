@@ -1,7 +1,11 @@
 # TUX
-Awesome MOTD for Ubuntu with system information and more.
+Terminal enhancement for Ubuntu.
 
 > **Note:** Successfully tested on **Ubuntu 18** to **25+**.
+
+# TUX.motd
+
+[Awesome MOTD](/src/tux_motd/README.md) for Ubuntu with system information and more.
 
 <img src="https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/ressources/screenshot.png" width="400">
 
@@ -39,28 +43,3 @@ You will be prompted to select the features to install.
 
     cd /opt/TUX/repo
     git pull
-
-
-# Extra
-
-## Custom services detection
-
-Edit **/etc/TUX/motd.services.txt** and add one service per line, with the format: **name;service**. For example:
-
-    Nginx Web Server;nginx
-    My firewall;ufw
-
-> **Note:** Do not add **.service** in the service name.
-
-## Activate VENV
-
-For testing or debugging:
-
-    cd /opt/TUX/repo/scripts
-    source venv-activate.sh
-
-## MOTD debug
-
-If the MOTD is not showing at login, edit **/etc/update-motd.d/99-tux-motd** and modify the relevant line as follows. Then logout and login again. Double-check the log at **/tmp/tuxmotd.log**
-
-    tux_motd 2> /tmp/tuxmotd.log

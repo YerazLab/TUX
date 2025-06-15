@@ -7,7 +7,7 @@ check_issourced() {
         printf "\n\n"
         print_box "${COLOR_OK_FG}To run this script as sourced, use:${COLOR_RESET}" \
                   "" \
-                  "${COLOR_OK_FG}$ source ./script/venv-activate.sh${COLOR_RESET}" \
+                  "${COLOR_OK_FG}$ source ./scripts/venv-activate.sh${COLOR_RESET}" \
                   80
         
         return 1

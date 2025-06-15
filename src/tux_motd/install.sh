@@ -27,20 +27,33 @@ init_configuration() {
         print_msg "OK" "MOTD" "Configuration initialized"
         mkdir -p "/etc/TUX/"
 
-        local input_file="$MODULE_DIR/ressources/services.txt"
-        local output_file="/etc/TUX/motd.services.txt"
+        local input_file="$MODULE_DIR/ressources/tux_motd.services"
+        local template_file="$MODULE_DIR/ressources/tux_motd.yaml"
+        local output_file="/etc/TUX/tux_motd.yaml"
 
-        > "$output_file"
+        local services_block=""
 
         while IFS=";" read -r name svc || [[ -n $name ]]; do
             [ -z "$svc" ] && continue
 
-            if systemctl status ${svc}.service &>/dev/null; then
-                echo "${name};${svc}" >> "$output_file"
+            if systemctl status "${svc}.service" &>/dev/null; then
+                services_block+="        ${name}: ${svc}"$'\n'
             fi
         done < "$input_file"
+
+        awk -v block="$services_block" '
+        {
+            if ($0 ~ /\{services\}/) {
+                gsub(/\{services\}/, "")
+                printf "%s", block
+            } else {
+                print
+            }
+        }
+        ' "$template_file" > "$output_file"
     fi
 }
+
 
 # Compilation des packages python
 build_module() {

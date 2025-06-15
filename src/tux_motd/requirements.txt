@@ -3,4 +3,3 @@ colorama
 pyfiglet
 distro
 pyyaml
-netifaces
