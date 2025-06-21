@@ -19,7 +19,7 @@ TUX uses glyphs (icons) to display some informations. To view these elements pro
 ## Automatic
 All features will be installed (like the silent flag).
 
-    curl https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/install.sh | sudo bash -s -
+    curl -fs https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/install.sh | sudo bash -s -
 
 
 ## Manual
