@@ -43,7 +43,7 @@ class Display:
             value = ", ".join(str(v) for v in value if v)    
 
         print(
-            f"{" " * indent}"
+            f"{' ' * indent}"
             f"{theme.Bright}{theme.Highlight}{icon}  {label:16}{theme.Reset}"
             f"{value}"
         )
