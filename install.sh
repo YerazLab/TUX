@@ -433,7 +433,7 @@ main() {
     check_isroot        || { quit_installation; return; }
     git_clone_or_update || { quit_installation; return; }
 
-    print_header "Environnement installation\n"
+    print_header "Environment installation\n"
     install_venv        || { quit_installation; return; }
     create_venv         || { quit_installation; return; }
     activate_venv       || { quit_installation; return; }
