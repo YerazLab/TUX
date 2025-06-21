@@ -15,7 +15,5 @@ dynamic = ["version"]
 tux_motd = "tux_motd:main"
 
 [tool.setuptools]
+py-modules = ["tux_motd"]
 package-dir = {"" = "src"}
-
-[tool.setuptools.packages.find]
-where = ["src"]

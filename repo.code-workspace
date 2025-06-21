@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "name": "TUX",
+      "uri": "vscode-remote://ssh-remote+jeq-ubuntu-25.devel.local/opt/TUX/repo"
+    }
+  ],
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+      "bash": {
+        "path": "bash",
+        "args": [
+          "-c",
+          "cd /opt/TUX/repo && source scripts/venv-activate.sh && exec bash && cd src"
+        ]
+      }
+    }
+  }
+}

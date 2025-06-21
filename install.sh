@@ -384,11 +384,11 @@ print_is_silentmode() {
 # Installation des modules
 install_modules() {
     print_msg "OK" "MODULE" "Start to installing modules"
-    cd src
+    cd modules
 
-    for PLUGIN in */ ; do
-        if [ -f "$PLUGIN/install.sh" ]; then
-            source "$PLUGIN/install.sh"
+    for MODULE in */ ; do
+        if [ -f "$MODULE/install.sh" ]; then
+            source "$MODULE/install.sh"
         fi
     done
 }
