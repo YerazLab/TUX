@@ -83,7 +83,7 @@ class Display:
         print(
             f"   {icon}  "
             f"{color}{symbol * used_width}"
-            f"{Foreground.get(Configuration.get("graph.track_color"), theme.LightBlack)}"
+            f"{Foreground.get(Configuration.get('graph.track_color'), theme.LightBlack)}"
             f"{theme.Dim}{symbol * unused_width}{theme.Reset}"
         )
 
