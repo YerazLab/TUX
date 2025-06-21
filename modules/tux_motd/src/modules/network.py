@@ -185,7 +185,12 @@ class Network(Module):
 
         if self.get("show", True):
 
-            result = subprocess.run(["resolvectl", "status"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+            result = subprocess.run(
+                ["resolvectl", "status"], 
+                stdout=subprocess.PIPE, 
+                stderr=subprocess.PIPE, 
+                universal_newlines=True
+            )
 
             interfaces = {}
             interface = None
