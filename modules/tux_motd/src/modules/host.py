@@ -78,7 +78,13 @@ class Host(Module):
         env["LANG"] = "en_US.UTF-8"
         env["LC_ALL"] = "en_US.UTF-8"
 
-        result = subprocess.run(["apt", "list", "--upgradable"], capture_output=True, universal_newlines=True, env=env)
+        result = subprocess.run(
+            ["apt", "list", "--upgradable"], 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE,
+            universal_newlines=True,
+            env=env
+        )
 
         upgradable = [line for line in result.stdout.splitlines() if "/" in line and not line.startswith("Listing")]
 

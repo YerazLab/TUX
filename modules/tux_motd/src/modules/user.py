@@ -25,7 +25,8 @@ class User(Module):
                 "list-sessions", 
                 "--no-legend"
             ], 
-            capture_output=True, 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE,
             universal_newlines=True
         )
         
@@ -49,7 +50,8 @@ class User(Module):
                     "-p", 
                     "Timestamp"
                 ], 
-                capture_output=True, 
+                stdout=subprocess.PIPE, 
+                stderr=subprocess.PIPE,
                 universal_newlines=True
             )
 
