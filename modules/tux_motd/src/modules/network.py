@@ -140,7 +140,7 @@ class Network(Module):
                 list: Une liste de dictionnaires contenant les routes.
         """
         cmd = ["ip", "-6", "route"] if ipv6 else ["ip", "-4", "route"]
-        result = subprocess.run(cmd, capture_output=True, universal_newlines=True)
+        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
         routes = []
 
         for line in result.stdout.strip().splitlines():
@@ -185,7 +185,7 @@ class Network(Module):
 
         if self.get("show", True):
 
-            result = subprocess.run(["resolvectl", "status"], capture_output=True, universal_newlines=True)
+            result = subprocess.run(["resolvectl", "status"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
             interfaces = {}
             interface = None
