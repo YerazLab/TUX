@@ -2,11 +2,34 @@
 
 MODULE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+readonly BACK_COLOR1="\[\e[48;5;22m\]"
+readonly BACK_COLOR2="\[\e[48;5;28m\]"
+readonly BACK_COLOR3="\[\e[48;5;34m\]"
+readonly BACK_COLOR4="\[\e[48;5;0m\]"
+
+readonly FORE_COLOR1="\[\e[38;5;255m\]"
+readonly FORE_COLOR2="\[\e[38;5;22m\]"
+readonly FORE_COLOR3="\[\e[38;5;28m\]"
+readonly FORE_COLOR4="\[\e[38;5;34m\]"
+
+readonly RESET="\[\e[0m\]"
+
 # Change le prompt PS1
 change_ps1() {
-    LINE='if [ -n "$BASH_VERSION" ] && [[ $- == *i* ]]; then
-        PS1="\[\e[48;5;22m\e[38;5;255m\] [\u]\[\e[0m\] \w > "
-    fi'
+    PS1="${BACK_COLOR1}${FORE_COLOR1}   "
+    PS1+="${BACK_COLOR2}${FORE_COLOR2}"
+    PS1+="${BACK_COLOR2}${FORE_COLOR1} \u "
+    PS1+="${BACK_COLOR3}${FORE_COLOR3}"
+    PS1+="${BACK_COLOR3}${FORE_COLOR1} \h "
+    PS1+="${BACK_COLOR4}${FORE_COLOR4}"
+    PS1+="${RESET} \w > "
+
+    LINE=$(cat <<EOF
+if [ -n "\$BASH_VERSION" ] && [[ \$- == *i* ]]; then
+    PS1='${PS1}'
+fi
+EOF
+)
 
     files=()
     files+=("/etc/bash.bashrc")
@@ -23,6 +46,10 @@ change_ps1() {
         print_msg "OK" "PS1" "Modification of the PS1 prompt on $file"
         echo -e "\n$LINE" >> "$file"
     done
+
+    printf "\n\n${COLOR_HIGHLIGHT_BG}"
+    printf " Please restart your terminal to enabled the new prompt ${COLOR_RESET}"
+
 }
 
 # Configure le PS1
