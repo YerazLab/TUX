@@ -24,8 +24,6 @@ class Theme:
 
     @property
     def Ok(cls):
-        print(Configuration.get("theme.ok"))
-        print(Fore.GREEN + "Test" + Fore.RESET)
         return Foreground.get(Configuration.get("theme.ok"), Fore.GREEN)
     
     @property
