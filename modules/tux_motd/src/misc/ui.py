@@ -55,8 +55,8 @@ class Display:
         percent = int((used / total) * 100)
 
         value = f"{get_size(used)} " \
-                f"{_("used")} {theme.Dim}({percent}%){theme.Reset} / {get_size(total)} " \
-                f"{_("total")}" 
+                f"{_('used')} {theme.Dim}({percent}%){theme.Reset} / {get_size(total)} " \
+                f"{_('total')}" 
 
         if label == "":
             print(f"   {icon}  {value}")

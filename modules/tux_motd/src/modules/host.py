@@ -65,8 +65,8 @@ class Host(Module):
             self.get("icon", ""), 
             _("Uptime"),
             ( 
-                f"{days} {  _n("day","days", days)}", 
-                f"{hours} { _n("hour","hours", hours)}"
+                f"{days} {  _n('day', 'days', days)}", 
+                f"{hours} { _n('hour', 'hours', hours)}"
             )
         )
 
@@ -83,8 +83,8 @@ class Host(Module):
         upgradable = [line for line in result.stdout.splitlines() if "/" in line and not line.startswith("Listing")]
 
         Display.header(
-            f"{_n("Update", "Updates", len(upgradable)):22}"
-            f"{_("Count")}"
+            f"{_n('Update', 'Updates', len(upgradable)):22}"
+            f"{_('Count')}"
         )
 
         Display.label(

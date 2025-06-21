@@ -25,9 +25,9 @@ class Processor(Module):
         Display.header(_n("Processor","Processors", cpu_count))
 
         print(
-            f"   {self.get("icon.info", "")}  "
-            f"{cpu_count} {  _n("Socket","Sockets", cpu_count)} / "
-            f"{core_count} { _n("Total core","Total cores", core_count)}\r"
+            f"   {self.get('icon.info', '')}  "
+            f"{cpu_count} {  _n('Socket', 'Sockets', cpu_count)} / "
+            f"{core_count} { _n('Total core', 'Total cores', core_count)}\r"
         )
 
     def loadaverage(self):
@@ -42,7 +42,7 @@ class Processor(Module):
         load15 = self.get_loadaverage_color(15, load15, cpu_count)
 
         print(
-            f"   {self.get("icon.graph","")}  "
+            f"   {self.get('icon.graph','')}  "
             f"{load1}  {load5}  {load15}\r"
         )
 
@@ -56,4 +56,4 @@ class Processor(Module):
         else:
             color = theme.Critical
 
-        return f"{theme.Bright}{theme.Highlight}{during}{_("m")}{theme.Reset} {color}{value:.2f}" 
+        return f"{theme.Bright}{theme.Highlight}{during}{_('m')}{theme.Reset} {color}{value:.2f}" 

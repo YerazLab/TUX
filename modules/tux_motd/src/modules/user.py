@@ -71,17 +71,17 @@ class User(Module):
 
         if users:
             Display.header(
-                f"{_n("User", "Users", len(users)):22}" +
-                f"{_("From"):44}" +
+                f"{_n('User', 'Users', len(users)):22}" +
+                f"{_('From'):44}" +
                 col("Since", len(f"Since")) +
-                f"{_("At")}"
+                f"{_('At')}"
             )
 
             for user in users:
                 print(
-                    f"   {theme.Bright}{theme.Highlight}{self.get("icon","")}  " +
-                    f"{user["user"]:16}{theme.Reset}" +
-                    f"{user["host"]:44}" +
+                    f"   {theme.Bright}{theme.Highlight}{self.get('icon','')}  " +
+                    f"{user['user']:16}{theme.Reset}" +
+                    f"{user['host']:44}" +
                     col(user["since"].strftime(_("Since_DateFormat")), None, "Since") +
-                    f"{user["since"].strftime(_("At_DateFormat"))}\r"
+                    f"{user['since'].strftime(_('At_DateFormat'))}\r"
                 )

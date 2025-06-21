@@ -20,9 +20,9 @@ class Service(Module):
         if services:
 
             Display.header(
-                f"{_n("Service", "Services", len(services)):36}" +
+                f"{_n('Service', 'Services', len(services)):36}" +
                 col("Running?", len(f"Running?")) +
-                f"{_("Enabled?")}"
+                f"{_('Enabled?')}"
             )
 
             for name, service in services:
@@ -49,7 +49,7 @@ class Service(Module):
 
                 print(
                     f"   {theme.Bright}{theme.Highlight}" +
-                    f"{self.get("icon", "󰒔")}  " +
+                    f"{self.get('icon', '󰒔')}  " +
                     f"{name:30}{theme.Reset}" +
                     f"{run_color}" +
                     col(run_status, None, "Running?") +  

@@ -76,15 +76,15 @@ class Network(Module):
             if ifaces:
 
                 Display.header(
-                    f"{_n("Interface", "Interfaces", len(ifaces)):22}"
-                    f"{_("Address"):44}"
-                    f"{_("Status")}"
+                    f"{_n('Interface', 'Interfaces', len(ifaces)):22}"
+                    f"{_('Address'):44}"
+                    f"{_('Status')}"
                 )
 
                 for iface, status, ip in ifaces:
                     print(
                         f"   {theme.Bright}{theme.Highlight}"
-                        f"{self.get("icon","󱦂")}  "
+                        f"{self.get('icon','󱦂')}  "
                         f"{iface:16}{theme.Reset}"
                         f"{ip:44}"
                         f"{status_color}{status}\r"
@@ -109,10 +109,10 @@ class Network(Module):
             all_routes = tri(ipv4_routes) + tri(ipv6_routes)
 
             Display.header(
-                f"{_n("Route" , "Routes", len(all_routes)):22}" +
-                f"{_("Gateway"):44}" +
+                f"{_n('Route' , 'Routes', len(all_routes)):22}" +
+                f"{_('Gateway'):44}" +
                 col("Metric", len(f"Metric")) +
-                f"{_("Destination")}"
+                f"{_('Destination')}"
             )
 
             if all_routes:
@@ -124,9 +124,9 @@ class Network(Module):
 
                     print(
                         f"   {theme.Bright}{theme.Highlight}" +
-                        f"{self.get("icon","󱇢")}  " +
-                        f"{route["interface"]:16}{theme.Reset}" +
-                        f"{route["gateway"]:44}" +
+                        f"{self.get('icon','󱇢')}  " +
+                        f"{route['interface']:16}{theme.Reset}" +
+                        f"{route['gateway']:44}" +
                         col(metric, None, "Metric") +
                         f"{status_color}{default}{theme.Reset}\r"
                     )
@@ -242,7 +242,7 @@ class Network(Module):
                 )
             else:
                 Display.header(
-                    f"{_n("Resolver" , "Resolvers", len(filtered)):22}" +
+                    f"{_n('Resolver' , 'Resolvers', len(filtered)):22}" +
                     col("Default", len(_("Default"))) +
                     col("Domain search", 20) +
                     col("IP address")
@@ -263,13 +263,13 @@ class Network(Module):
                     domain_search = info["dns_domain"] if info["dns_domain"] else _("None")
 
                     print(
-                        f"   {theme.Bright}{theme.Highlight}{self.get("icon","󰖟")}  " +
+                        f"   {theme.Bright}{theme.Highlight}{self.get('icon','󰖟')}  " +
                         col(interface, 16) +
                         f"{theme.Reset}{default_color}" +
                         col(default, None, "Default") +
                         f"{theme.Reset}" +
                         col(domain_search, 20, "Domain search") +
-                        f"{", ".join(dns_servers)}{theme.Reset}\r"
+                        f"{', '.join(dns_servers)}{theme.Reset}\r"
                     )
 
     def detect_ip_version(self, ip):
@@ -301,7 +301,7 @@ class Network(Module):
                 Display.label(
                     icon, 
                     status, 
-                    f"{theme.Critical}{_("Inactive")}{theme.Reset}", 
+                    f"{theme.Critical}{_('Inactive')}{theme.Reset}", 
                     3
                 )
 
@@ -310,17 +310,17 @@ class Network(Module):
                 Display.label(
                     icon, 
                     status, 
-                    f"{theme.Warning}{_("No rules")}{theme.Reset}", 
+                    f"{theme.Warning}{_('No rules')}{theme.Reset}", 
                     3
                 )
 
             elif ("---" in result.stdout):
                 Display.header(
-                    f"{_("Firewall"):44}"
-                    f"{_("Type"):7}"
-                    f"{_("Action"):8}"
-                    f"{_("Dir"):5}"
-                    f"{_("Rule")}"
+                    f"{_('Firewall'):44}"
+                    f"{_('Type'):7}"
+                    f"{_('Action'):8}"
+                    f"{_('Dir'):5}"
+                    f"{_('Rule')}"
                 )
 
                 after_separator = False
