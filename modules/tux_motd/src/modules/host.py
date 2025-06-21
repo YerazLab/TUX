@@ -31,7 +31,7 @@ class Host(Module):
     def hostname(self):
         """ Affiche le nom de l'hôte via figlet """
 
-        print(f"{Foreground.get(Configuration.get("theme.hostname"), theme.Hostname)}%s{theme.Reset}" % 
+        print(f"{Foreground.get(Configuration.get('theme.hostname'), theme.Hostname)}%s{theme.Reset}" % 
             pyfiglet.figlet_format(
                 self.get_name(), 
                 font=self.get('font', 'termius'), 
