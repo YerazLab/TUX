@@ -5,7 +5,7 @@ Terminal enhancement for Ubuntu.
 
 # TUX.motd
 
-[Awesome MOTD](/src/tux_motd/README.md) for Ubuntu with system information and more.
+[Awesome MOTD](/modules/tux_motd/README.md) for Ubuntu with system information and more.
 
 <img src="ressources/motd.png" width="500">
 
