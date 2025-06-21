@@ -7,6 +7,8 @@ _current_locale = "en"
 def setup_translation(lang_code="en"):
     global _translation, _current_locale
     localedir = os.path.join(os.path.dirname(__file__), '../i18n')
+    print(localedir)
+
     _translation = gettext.translation("messages", localedir=localedir, languages=[lang_code], fallback=True)
     _translation.install()
     _current_locale = lang_code
@@ -38,5 +40,3 @@ def col(text, size=None, reftext=None):
     
     ref_len = max(size, len(_(reftext)) + 2) 
     return translated.ljust(ref_len)
-
-#text[:10]

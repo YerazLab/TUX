@@ -2,6 +2,8 @@
 
 import importlib
 
+from colorama import init
+
 from tux_motd.misc.i18n import setup_translation
 from tux_motd.misc.util import clean_screen
 from tux_motd.misc.ui import Display
@@ -79,6 +81,8 @@ def main():
     clean_screen()
 
     Configuration.load("/etc/TUX/tux_motd.yaml")
+
+    init(autoreset=True)
 
     setup_translation(Configuration.get("language","en"))
 

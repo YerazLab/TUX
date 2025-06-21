@@ -21,12 +21,16 @@ If the TUX.motd is not showing at login, edit **/etc/update-motd.d/99-tux-motd**
 
 # Developpment
 
-In this example, we activate the virtual environment (VENV) and use nano to edit the tux_motd.py file.
+## VENV
+
+Activate the virtual environment (VENV).
 
     sudo -i
     cd /opt/TUX/repo/
     source ./scripts/venv-activate.sh
     cd modules/tux_motd/src/tux_motd
+
+> **Note:** An interactive root session is required to access certain internal features.
 
 ## Edit
 
@@ -48,7 +52,14 @@ In this example, we activate the virtual environment (VENV) and use nano to edit
 
     pip uninstall tux_motd -y
 
-> **Note:** An interactive root session is required to access certain internal features.
+## Add a new language (ex. es aka spain)
+
+    cd src/tux_motd/i18n/
+    mkdir -p es/LC_MESSAGES
+    cp en/LC_MESSAGES/messages.po es/LC_MESSAGES/
+    cd es/LC_MESSAGES
+    nano messages.po
+    msgfmt -o messages.mo messages.po    
 
 # Settings
 
