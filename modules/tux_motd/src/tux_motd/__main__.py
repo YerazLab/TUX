@@ -82,7 +82,7 @@ def main():
 
     Configuration.load("/etc/TUX/tux_motd.yaml")
 
-    init(autoreset=True)
+    init(autoreset=True, strip=False, convert=False)
 
     setup_translation(Configuration.get("language","en"))
 
