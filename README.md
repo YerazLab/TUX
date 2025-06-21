@@ -7,8 +7,13 @@ Terminal enhancement for Ubuntu.
 
 [Awesome MOTD](/src/tux_motd/README.md) for Ubuntu with system information and more.
 
-<img src="https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/ressources/screenshot.png" width="400">
+<img src="https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/ressources/motd.png" width="400">
 
+# TUX.ps1
+
+Nice PS1 prompt.
+
+<img src="https://raw.githubusercontent.com/YerazLab/TUX/refs/heads/main/ressources/ps1.png" width="400">
 
 # Prerequisites
 
