@@ -16,3 +16,6 @@ tux_motd = "tux_motd.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"tux_motd.i18n" = ["*/LC_MESSAGES/*.mo"]

@@ -48,3 +48,4 @@ You will be prompted to select the features to install.
 
     cd /opt/TUX/repo
     git pull
+    sudo bash -i ./install.sh
