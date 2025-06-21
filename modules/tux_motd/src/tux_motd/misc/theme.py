@@ -17,13 +17,15 @@ Foreground = {
 
 class Theme:
 
-    init(autoreset=True)
+    init(autoreset=True, strip=False, convert=False)
 
     def __init__(self):
         pass
 
     @property
     def Ok(cls):
+        print(Configuration.get("theme.ok"))
+        print(Fore.GREEN)
         return Foreground.get(Configuration.get("theme.ok"), Fore.GREEN)
     
     @property
