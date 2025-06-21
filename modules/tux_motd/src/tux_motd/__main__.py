@@ -2,10 +2,10 @@
 
 import importlib
 
-from misc.i18n import setup_translation
-from misc.util import clean_screen
-from misc.ui import Display
-from misc.configuration import Configuration
+from tux_motd.misc.i18n import setup_translation
+from tux_motd.misc.util import clean_screen
+from tux_motd.misc.ui import Display
+from tux_motd.misc.configuration import Configuration
 
 def get_modules():
     modules = []
@@ -56,7 +56,7 @@ def start_modules():
             module_name = module["module_name"]
             method_name = module["method_name"]
 
-            mod = importlib.import_module(f"modules.{module_name}")
+            mod = importlib.import_module(f"tux_motd.modules.{module_name}")
 
             class_name = module_name.capitalize()
             cls = getattr(mod, class_name, None)
@@ -71,7 +71,7 @@ def start_modules():
                         Display.error(f"Method {method_name} not found in {class_name}")
                 else:
                     instance.run()
-                    
+
         except Exception as e:
            Display.error(f"Instantiation error of module {module_name} : {e}")
 

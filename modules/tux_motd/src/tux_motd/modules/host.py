@@ -7,11 +7,11 @@ import os
 
 from datetime import datetime
 
-from misc.module import Module
-from misc.i18n import _, _n
-from misc.ui import Display
-from misc.configuration import Configuration
-from misc.theme import theme, Foreground
+from tux_motd.misc.module import Module
+from tux_motd.misc.i18n import _, _n
+from tux_motd.misc.ui import Display
+from tux_motd.misc.configuration import Configuration
+from tux_motd.misc.theme import theme, Foreground
 
 class Host(Module):
 
@@ -80,8 +80,8 @@ class Host(Module):
 
         result = subprocess.run(
             ["apt", "list", "--upgradable"], 
-            stdout=subprocess.PIPE, 
-            stderr=subprocess.PIPE,
+                stdout=subprocess.PIPE, 
+                stderr=subprocess.PIPE,
             universal_newlines=True,
             env=env
         )

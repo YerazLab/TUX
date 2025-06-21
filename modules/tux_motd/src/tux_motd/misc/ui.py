@@ -1,9 +1,10 @@
 
 from colorama import Fore, Back
 
-from misc.util import get_size, strip_ansi
-from misc.configuration import Configuration
-from misc.theme import theme, Foreground
+from tux_motd.misc.util import get_size, strip_ansi
+from tux_motd.misc.i18n import _
+from tux_motd.misc.configuration import Configuration
+from tux_motd.misc.theme import theme, Foreground
 
 class Display:
 

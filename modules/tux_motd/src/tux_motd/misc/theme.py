@@ -1,7 +1,7 @@
 
 from colorama import Fore, Style, init
 
-from misc.configuration import Configuration
+from tux_motd.misc.configuration import Configuration
 
 Foreground = {
     "black":    Fore.BLACK,

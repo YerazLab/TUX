@@ -26,9 +26,27 @@ In this example, we activate the virtual environment (VENV) and use nano to edit
     sudo -i
     cd /opt/TUX/repo/
     source ./scripts/venv-activate.sh
-    cd src/tux_motd/src
-    nano tux_motd.py
-    ./tux_motd.py
+    cd modules/tux_motd/src/tux_motd
+
+## Edit
+
+    nano src/tux_motd/__main__.py
+
+## Start
+
+    PYTHONPATH=src python -m tux_motd
+
+## Build & dev
+
+    python -m pip install -e .
+
+## Install
+
+    python -m pip install .
+
+## Uninstall
+
+    pip uninstall tux_motd -y
 
 > **Note:** An interactive root session is required to access certain internal features.
 

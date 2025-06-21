@@ -1,4 +1,4 @@
-from misc.configuration import Configuration
+from tux_motd.misc.configuration import Configuration
 
 class Module:
 

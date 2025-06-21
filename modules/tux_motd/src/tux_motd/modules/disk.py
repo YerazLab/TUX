@@ -1,10 +1,10 @@
 import psutil
 
-from misc.module import Module
-from misc.i18n import _, _n
-from misc.ui import Display
-from misc.configuration import Configuration
-from misc.theme import theme
+from tux_motd.misc.module import Module
+from tux_motd.misc.i18n import _, _n
+from tux_motd.misc.ui import Display
+from tux_motd.misc.configuration import Configuration
+from tux_motd.misc.theme import theme
 
 class Disk(Module):
 

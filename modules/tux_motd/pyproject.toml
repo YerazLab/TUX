@@ -12,8 +12,7 @@ dependencies = []
 dynamic = ["version"]
 
 [project.scripts]
-tux_motd = "tux_motd:main"
+tux_motd = "tux_motd.__main__:main"
 
-[tool.setuptools]
-py-modules = ["tux_motd"]
-package-dir = {"" = "src"}
+[tool.setuptools.packages.find]
+where = ["src"]
