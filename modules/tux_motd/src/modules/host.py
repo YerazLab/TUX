@@ -34,7 +34,7 @@ class Host(Module):
         print(f"{Foreground.get(Configuration.get("theme.hostname"), theme.Hostname)}%s{theme.Reset}" % 
             pyfiglet.figlet_format(
                 self.get_name(), 
-                font=self.get('font', "termius"), 
+                font=self.get('font', 'termius'), 
                 width=1000)
             )
             
