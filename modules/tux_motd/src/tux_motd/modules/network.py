@@ -249,7 +249,7 @@ class Network(Module):
                 Display.header(
                     f"{_n('Resolver' , 'Resolvers', len(filtered)):22}" +
                     col("Default", len(_("Default"))) +
-                    col("Domain search", 20) +
+                    col("Domain search", 35) +
                     col("IP address")
                 )
 
@@ -273,7 +273,7 @@ class Network(Module):
                         f"{theme.Reset}{default_color}" +
                         col(default, None, "Default") +
                         f"{theme.Reset}" +
-                        col(domain_search, 20, "Domain search") +
+                        col(domain_search, 35, "Domain search") +
                         f"{', '.join(dns_servers)}{theme.Reset}\r"
                     )
 

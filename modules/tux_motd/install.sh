@@ -95,6 +95,12 @@ disabled_motd() {
         else
             print_msg "INFO" "MOTD" "Skipping disabling existing MOTD"
         fi
+
+        # Remove legal notice if exists
+        rm /etc/legal
+
+        # Suppress sudo message on first use
+        touch ~/.sudo_as_admin_successful
     fi
 } 
 
